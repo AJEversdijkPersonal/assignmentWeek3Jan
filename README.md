@@ -1,27 +1,15 @@
-# AssignmentWeek3Jan
+# Assignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Bank’s software is mainly used to get insights on customer transactions. Within this assignment there is some backend software created to spin up a NodeJS service which serves a transactions file. Create an Angular application where a user can see their transactions in in list (timeline).
 
-## Development server
+The requirements are:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- All transactions should be shown
+- All transactions should be showed grouped based on date and ordered (newest on top)
+- The information in the timeline should only show `otherParty.name` and the `amount` in EUR. (Be aware there is some USD as well, need to convert it based on the rate)
+- When clicking on a transaction you should navigate to a detail page showing the more in-depth details
+- It would be nice if there is some sort of styling (scss)
 
-## Code scaffolding
+In addition to the code, consider other matters that you consider as part of your work.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Thats it, happy 💻!
