@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
+import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 9;
 @Component({
   selector: 'app-transactions-card-list',
   standalone: true,
-  imports: [MatListModule],
+  imports: [MatListModule, TransactionCardComponent],
   templateUrl: './transactions-card-list.component.html',
   styleUrl: './transactions-card-list.component.scss',
 })

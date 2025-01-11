@@ -1,1 +1,8 @@
-<mat-card>aaaaa</mat-card>
+<mat-card>
+  <mat-card-content>
+    @if (transaction().otherParty) {
+    <p>Name: {{ transaction().otherParty?.name }}</p>
+    }
+    <p>Amount: {{ amount() | currency : "EUR" }}</p>
+  </mat-card-content>
+</mat-card>
