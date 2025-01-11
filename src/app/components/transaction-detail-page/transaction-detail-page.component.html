@@ -1,6 +1,6 @@
 <div>
   <p>Date and time: {{ transaction().timestamp }}</p>
-  <p>Amount in euro: {{ transaction().amount | currency : "EUR" }}</p>
+  <p>Amount in euro: {{ amount() | currency : "EUR" }}</p>
   @if (transaction().currencyRate) {
   <p>
     Amount in original currency:
