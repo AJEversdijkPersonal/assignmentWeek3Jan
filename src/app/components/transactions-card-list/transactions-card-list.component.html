@@ -1,0 +1,27 @@
+<!-- mat list is being a bit weird with the padding, just using a normal list for now. -->
+<!-- <mat-list>
+  @for (day of transactions.days; track $index) {
+  <mat-list-item>
+    <p>Date: {{ day.id }}</p>
+    @for (transaction of day.transactions; track $index) {
+    <app-transaction-card [transaction]="transaction"></app-transaction-card>
+    }
+  </mat-list-item>
+  <mat-divider />
+  }
+</mat-list> -->
+
+<ul>
+  @for (day of transactions.days; track $index) {
+  <li>
+    <p>Date: {{ day.id }}</p>
+    @for (transaction of day.transactions; track $index) {
+    <div class="transaction-card">
+      <app-transaction-card [transaction]="transaction"></app-transaction-card>
+    </div>
+
+    }
+  </li>
+  <mat-divider />
+  }
+</ul>
