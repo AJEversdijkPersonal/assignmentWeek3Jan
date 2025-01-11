@@ -4,11 +4,11 @@ Bank’s software is mainly used to get insights on customer transactions. Withi
 
 The requirements are:
 
-- All transactions should be shown
+- All transactions should be shown -v
 - All transactions should be showed grouped based on date and ordered (newest on top)
-- The information in the timeline should only show `otherParty.name` and the `amount` in EUR. (Be aware there is some USD as well, need to convert it based on the rate)
+- The information in the timeline should only show `otherParty.name` and the `amount` in EUR. (Be aware there is some USD as well, need to convert it based on the rate) -v
 - When clicking on a transaction you should navigate to a detail page showing the more in-depth details
-- It would be nice if there is some sort of styling (scss)
+- It would be nice if there is some sort of styling (scss) -v
 
 In addition to the code, consider other matters that you consider as part of your work.
 
