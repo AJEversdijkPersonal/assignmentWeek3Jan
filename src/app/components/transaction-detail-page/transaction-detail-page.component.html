@@ -1,1 +1,16 @@
-<p>transaction-detail-page works!</p>
+<div>
+  <p>Date and time: {{ transaction().timestamp }}</p>
+  <p>Amount in euro: {{ transaction().amount | currency : "EUR" }}</p>
+  @if (transaction().currencyRate) {
+  <p>
+    Amount in original currency:
+    {{ transaction().amount | currency : transaction().currencyCode }}
+  </p>
+  }
+  <p>Amount in original currency: {{ transaction().timestamp }}</p>
+  <p>Description: {{ transaction().description }}</p>
+  @if (transaction().otherParty) {
+  <p>Name: {{ transaction().otherParty?.name }}</p>
+  <p>IBAN: {{ transaction().otherParty?.iban }}</p>
+  }
+</div>
