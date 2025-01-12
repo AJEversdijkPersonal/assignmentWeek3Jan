@@ -1,5 +1,8 @@
 <ng-container>
   <div class="menu-parent">
+    <button mat-raised-button color="primary" (click)="navigateTo('welcome')">
+      {{ "Welcome page" }}
+    </button>
     <button
       mat-raised-button
       color="primary"
@@ -8,5 +11,6 @@
       {{ "transactions-timeline" }}
     </button>
   </div>
+
   <router-outlet></router-outlet>
 </ng-container>
