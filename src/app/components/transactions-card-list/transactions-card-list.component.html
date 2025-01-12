@@ -12,12 +12,15 @@
 </mat-list> -->
 
 <ul>
-  @for (day of transactions.days; track $index) {
+  @for (day of transactions().days; track $index) {
   <li>
     <p>Date: {{ day.id }}</p>
     @for (transaction of day.transactions; track $index) {
     <div class="transaction-card">
-      <app-transaction-card [transaction]="transaction"></app-transaction-card>
+      <app-transaction-card
+        [transaction]="transaction"
+        (click)="onCardClick(day.id, transaction.id)"
+      ></app-transaction-card>
     </div>
 
     }
