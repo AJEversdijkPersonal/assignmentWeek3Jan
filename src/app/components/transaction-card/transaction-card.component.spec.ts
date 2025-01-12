@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionCardComponent } from './transaction-card.component';
+import { By } from '@angular/platform-browser';
+import { CurrencyPipe } from '@angular/common';
 
 describe('TransactionCardComponent', () => {
   let component: TransactionCardComponent;
@@ -21,6 +23,7 @@ describe('TransactionCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TransactionCardComponent],
+      providers: [CurrencyPipe],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TransactionCardComponent);
@@ -31,5 +34,19 @@ describe('TransactionCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the correct transaction amount', () => {
+    const amountElement = fixture.debugElement.query(By.css('#amount'));
+    expect(amountElement.nativeElement.textContent).toContain('Amount: €15.29');
+  });
+
+  it('should display the correct other party name', () => {
+    const otherPartyElement = fixture.debugElement.query(
+      By.css('#other-party')
+    );
+    expect(otherPartyElement.nativeElement.textContent).toContain(
+      mockTransaction.otherParty.name
+    );
   });
 });

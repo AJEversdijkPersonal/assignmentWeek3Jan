@@ -18,7 +18,7 @@ export class TransactionCardComponent {
     // I hope they change it eventually.
     const currencyRate = this.transaction().currencyRate;
     if (currencyRate) {
-      return this.transaction().amount * currencyRate;
+      return this.transaction().amount / currencyRate;
     }
     return this.transaction().amount;
   });

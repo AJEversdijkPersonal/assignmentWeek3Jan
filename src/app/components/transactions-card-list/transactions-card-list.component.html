@@ -1,24 +1,21 @@
-<ng-container>
-  <h2>Transactions</h2>
-  @if (transactions()) {
-  <ul>
-    @for (day of transactions().days; track $index) {
-    <li>
-      <h3>Date: {{ day.id }}</h3>
-      @for (transaction of day.transactions; track $index) {
-      <div class="transaction-card">
-        <app-transaction-card
-          [transaction]="transaction"
-          (click)="onCardClick(day.id, transaction.id)"
-        ></app-transaction-card>
-      </div>
+@if (transactions()) {
+<ul>
+  @for (day of transactions()?.days; track $index) {
+  <li>
+    <h3>Date: {{ day.id }}</h3>
+    @for (transaction of day.transactions; track $index) {
+    <div class="transaction-card">
+      <app-transaction-card
+        [transaction]="transaction"
+        (click)="onCardClick(day.id, transaction.id)"
+      ></app-transaction-card>
+    </div>
 
-      }
-    </li>
-    <mat-divider />
     }
-  </ul>
-  } @if (!transactions()) {
-  <p>No transactions available</p>
+  </li>
+  <mat-divider />
   }
-</ng-container>
+</ul>
+} @if (!transactions()) {
+<p id="no-transactions">No transactions available</p>
+}

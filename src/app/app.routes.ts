@@ -12,6 +12,13 @@ export const routes: Routes = [
           ).then((c) => c.TransactionsTimelinePageComponent),
       },
       {
+        path: 'welcome',
+        loadComponent: () =>
+          import('./components/landing-page/landing-page.component').then(
+            (c) => c.LandingPageComponent
+          ),
+      },
+      {
         // path: 'transaction/:dayId/:transactionId',
         path: 'transaction',
         loadComponent: () =>

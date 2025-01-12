@@ -7,7 +7,7 @@ import { Transactions } from '../model/transactions.model';
 export class TransactionsService {
   constructor() {}
 
-  private transactions = signal<Transactions>({
+  private transactions = signal<Transactions | undefined>({
     days: [
       {
         id: '2022-11-08',
