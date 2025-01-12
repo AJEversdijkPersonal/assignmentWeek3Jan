@@ -28,13 +28,17 @@ export class TransactionDetailPageComponent {
   }
 
   transaction: Signal<Transaction | undefined> = computed(() => {
-    return this.transactions()
-      .days.filter((day) => day.id === this.dayId)
-      .map((day) =>
-        day.transactions.filter(
-          (transaction) => transaction.id.toString() === this.transactionId
-        )
-      )[0][0];
+    const transactions = this.transactions();
+    if (transactions) {
+      return transactions.days
+        .filter((day) => day.id === this.dayId)
+        .map((day) =>
+          day.transactions.filter(
+            (transaction) => transaction.id.toString() === this.transactionId
+          )
+        )[0][0];
+    }
+    return undefined;
   });
 
   amount: Signal<number | undefined> = computed(() => {
