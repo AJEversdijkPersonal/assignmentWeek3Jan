@@ -15,6 +15,7 @@ export class TransactionsTimelinePageComponent implements OnInit {
   isFetching = signal(false);
 
   ngOnInit(): void {
+    this.isFetching.set(true);
     const transactionsSub = this.transactionService
       .getTransactions()
       .subscribe({

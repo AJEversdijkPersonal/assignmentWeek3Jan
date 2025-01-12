@@ -136,8 +136,10 @@ export class TransactionsService {
   getTransactions = () => {
     return this.fetchTransactions().pipe(
       tap({
-        next: (transactions) =>
-          transactions ? this.transactions.set(transactions) : null,
+        next: (transactions) => {
+          console.log(transactions);
+          return transactions ? this.transactions.set(transactions) : null;
+        },
       })
     );
   };
