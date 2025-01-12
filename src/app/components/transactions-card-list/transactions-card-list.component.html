@@ -1,27 +1,24 @@
-<!-- mat list is being a bit weird with the padding, just using a normal list for now. -->
-<!-- <mat-list>
-  @for (day of transactions.days; track $index) {
-  <mat-list-item>
-    <p>Date: {{ day.id }}</p>
-    @for (transaction of day.transactions; track $index) {
-    <app-transaction-card [transaction]="transaction"></app-transaction-card>
-    }
-  </mat-list-item>
-  <mat-divider />
-  }
-</mat-list> -->
+<ng-container>
+  <h2>Transactions</h2>
+  @if (transactions()) {
+  <ul>
+    @for (day of transactions().days; track $index) {
+    <li>
+      <h3>Date: {{ day.id }}</h3>
+      @for (transaction of day.transactions; track $index) {
+      <div class="transaction-card">
+        <app-transaction-card
+          [transaction]="transaction"
+          (click)="onCardClick(day.id, transaction.id)"
+        ></app-transaction-card>
+      </div>
 
-<ul>
-  @for (day of transactions.days; track $index) {
-  <li>
-    <p>Date: {{ day.id }}</p>
-    @for (transaction of day.transactions; track $index) {
-    <div class="transaction-card">
-      <app-transaction-card [transaction]="transaction"></app-transaction-card>
-    </div>
-
+      }
+    </li>
+    <mat-divider />
     }
-  </li>
-  <mat-divider />
+  </ul>
+  } @if (!transactions()) {
+  <p>No transactions available</p>
   }
-</ul>
+</ng-container>
