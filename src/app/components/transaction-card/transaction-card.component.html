@@ -1,8 +1,8 @@
 <mat-card>
   <mat-card-content>
     @if (transaction().otherParty) {
-    <p>Name: {{ transaction().otherParty?.name }}</p>
+    <p id="other-party">Name: {{ transaction().otherParty?.name }}</p>
     }
-    <p>Amount: {{ amount() | currency : "EUR" }}</p>
+    <p id="amount">Amount: {{ amount() | currency : "EUR" }}</p>
   </mat-card-content>
 </mat-card>
