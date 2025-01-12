@@ -3,7 +3,6 @@ import { MatListModule } from '@angular/material/list';
 import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 import { Router } from '@angular/router';
 import { TransactionsService } from '../../services/transactions.service';
-import { Transactions } from '../../model/transactions.model';
 9;
 @Component({
   selector: 'app-transactions-card-list',

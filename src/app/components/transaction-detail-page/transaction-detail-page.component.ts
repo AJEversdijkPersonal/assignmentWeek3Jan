@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  input,
-  signal,
-  Signal,
-} from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { Transaction } from '../../model/transactions.model';
 import { CurrencyPipe } from '@angular/common';
 import { TransactionsService } from '../../services/transactions.service';
