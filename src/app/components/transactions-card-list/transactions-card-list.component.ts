@@ -17,7 +17,6 @@ export class TransactionsCardListComponent {
   constructor(private router: Router) {}
 
   onCardClick = (dayId: string, transactionId: number) => {
-    console.log(dayId, transactionId);
     this.router.navigate(['/transaction'], {
       queryParams: { dayId: dayId, transactionId: transactionId },
     });

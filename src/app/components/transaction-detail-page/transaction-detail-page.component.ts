@@ -1,13 +1,14 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { Transaction } from '../../model/transactions.model';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { TransactionsService } from '../../services/transactions.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-transaction-detail-page',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, MatCardModule, DatePipe],
   templateUrl: './transaction-detail-page.component.html',
   styleUrl: './transaction-detail-page.component.scss',
 })
@@ -24,17 +25,16 @@ export class TransactionDetailPageComponent {
       (this.dayId = params['dayId']),
         (this.transactionId = params['transactionId']);
     });
-    console.log(this.dayId, this.transactionId);
   }
 
-  transaction: Signal<Transaction | any | undefined> = computed(() => {
+  transaction: Signal<Transaction | undefined> = computed(() => {
     return this.transactions()
       .days.filter((day) => day.id === this.dayId)
       .map((day) =>
         day.transactions.filter(
           (transaction) => transaction.id.toString() === this.transactionId
         )
-      );
+      )[0][0];
   });
 
   amount: Signal<number | undefined> = computed(() => {
