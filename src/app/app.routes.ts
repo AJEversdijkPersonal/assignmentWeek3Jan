@@ -12,7 +12,8 @@ export const routes: Routes = [
           ).then((c) => c.TransactionsTimelinePageComponent),
       },
       {
-        path: 'transaction/:dayId/:transactionId',
+        // path: 'transaction/:dayId/:transactionId',
+        path: 'transaction',
         loadComponent: () =>
           import(
             './components/transaction-detail-page/transaction-detail-page.component'

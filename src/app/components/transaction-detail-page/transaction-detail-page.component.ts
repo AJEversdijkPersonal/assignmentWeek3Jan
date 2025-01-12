@@ -9,6 +9,7 @@ import {
 import { Transaction } from '../../model/transactions.model';
 import { CurrencyPipe } from '@angular/common';
 import { TransactionsService } from '../../services/transactions.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-detail-page',
@@ -20,18 +21,28 @@ import { TransactionsService } from '../../services/transactions.service';
 export class TransactionDetailPageComponent {
   private transactionsService = inject(TransactionsService);
   transactions = this.transactionsService.loadedTransactions;
+  private readonly route = inject(ActivatedRoute);
+
+  dayId: string | null = null;
+  transactionId: string | null = null;
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      (this.dayId = params['dayId']),
+        (this.transactionId = params['transactionId']);
+    });
+    console.log(this.dayId, this.transactionId);
+  }
 
   transaction: Signal<Transaction | any | undefined> = computed(() => {
     return this.transactions()
-      .days.filter((day) => day.id === this.dayId())
+      .days.filter((day) => day.id === this.dayId)
       .map((day) =>
         day.transactions.filter(
-          (transaction) => transaction.id === this.transactionId()
+          (transaction) => transaction.id.toString() === this.transactionId
         )
       );
   });
-  dayId: Signal<string> = signal('');
-  transactionId: Signal<number> = signal(0);
 
   amount: Signal<number | undefined> = computed(() => {
     // I think this syntax is so stupid, but angular wants it this way for now.
