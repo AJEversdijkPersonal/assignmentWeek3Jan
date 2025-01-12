@@ -66,7 +66,7 @@ describe('TransactionDetailPageComponent', () => {
 
   it('should compute the correct amount with currencyRate', () => {
     const amount = component.amount();
-    expect(amount).toBe(120);
+    expect(amount).toBe(83.33333333333334);
   });
 
   // Neither of these work for some reason, I don't have the time to properly debug this,

@@ -44,7 +44,7 @@ export class TransactionDetailPageComponent {
     if (!transaction) return undefined;
     const currencyRate = this.transaction()?.currencyRate;
     if (currencyRate) {
-      return transaction.amount * currencyRate;
+      return transaction.amount / currencyRate;
     }
     return transaction.amount;
   });
