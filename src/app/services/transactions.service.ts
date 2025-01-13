@@ -137,7 +137,6 @@ export class TransactionsService {
     return this.fetchTransactions().pipe(
       tap({
         next: (transactions) => {
-          console.log(transactions);
           return transactions ? this.transactions.set(transactions) : null;
         },
       })
@@ -146,12 +145,11 @@ export class TransactionsService {
 
   fetchTransactions = () => {
     return this.httpClient
-      .get<{ transactions: Transactions }>(
-        'http://localhost:8080/api/transactions',
-        { observe: 'response' }
-      )
+      .get<Transactions>('http://localhost:8080/api/transactions', {
+        observe: 'response',
+      })
       .pipe(
-        map((res) => res.body?.transactions),
+        map((res) => res.body),
         catchError((error) => {
           return throwError(() => new Error('could not get transactions'));
         })
