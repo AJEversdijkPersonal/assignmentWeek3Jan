@@ -1,20 +1,49 @@
 <mat-card>
   @if (transaction()) {
   <mat-card-header><h2>Transaction Details</h2></mat-card-header>
-  <mat-card-content
-    ><p>Date and time: {{ transaction()?.timestamp | date : "medium" }}</p>
-    <p>Amount in euro: {{ amount() | currency : "EUR" }}</p>
-    @if (transaction()?.currencyRate) {
-    <p>
-      Amount in original currency:
-      {{ transaction()?.amount | currency : transaction()?.currencyCode }}
-    </p>
-    }
-    <p>Description: {{ transaction()?.description }}</p>
-    @if (transaction()?.otherParty) {
-    <p>Name: {{ transaction()?.otherParty?.name }}</p>
-    <p>IBAN: {{ transaction()?.otherParty?.iban }}</p>
-    }
+  <mat-card-content>
+    <table>
+      <tr>
+        <td>Date and time:</td>
+        <td>
+          {{ transaction()?.timestamp | date : "medium" }}
+        </td>
+      </tr>
+      <tr>
+        <td>Amount in euro:</td>
+        <td>
+          {{ amount() | currency : "EUR" }}
+        </td>
+      </tr>
+      @if (transaction()?.currencyRate) {
+      <tr>
+        <td>Amount in original currency:</td>
+        <td>
+          {{ transaction()?.amount | currency : transaction()?.currencyCode }}
+        </td>
+      </tr>
+      }
+      <tr>
+        <td>Description:</td>
+        <td>
+          {{ transaction()?.description }}
+        </td>
+      </tr>
+      @if (transaction()?.otherParty) {
+      <tr>
+        <td>Name:</td>
+        <td>
+          {{ transaction()?.otherParty?.name }}
+        </td>
+      </tr>
+      <tr>
+        <td>IBAN:</td>
+        <td>
+          {{ transaction()?.otherParty?.iban }}
+        </td>
+      </tr>
+      }
+    </table>
   </mat-card-content>
   } @if(!transaction()){
   <mat-card-content><p>No transaction data</p></mat-card-content>
