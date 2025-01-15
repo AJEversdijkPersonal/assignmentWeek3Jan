@@ -137,8 +137,6 @@ describe('TransactionsCardListComponent', () => {
 
   beforeEach(async () => {
     const routerMock = { navigate: jest.fn() };
-    // const transactionsServiceMock = { loadedTransactions: signal([]) };
-
     const transactionsServiceMock = {
       loadedTransactions: jest.fn().mockReturnValue(of(transactions)),
     };
@@ -148,7 +146,6 @@ describe('TransactionsCardListComponent', () => {
       providers: [
         { provide: Router, useValue: routerMock },
         { provide: TransactionsService, useValue: transactionsServiceMock },
-        // TransactionsService,
       ],
     }).compileComponents();
 
@@ -156,7 +153,6 @@ describe('TransactionsCardListComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
     transactionsService = TestBed.inject(TransactionsService);
-    // transactionsService.loadedTransactions = transactionsServiceMock;
     fixture.detectChanges();
   });
 
@@ -173,20 +169,20 @@ describe('TransactionsCardListComponent', () => {
     });
   });
 
-  // TODO will need to figure out how to test with the signal from the store here, I have never done that before.
-
-  xit('should display the correct number of transaction cards', () => {
+  it('should display the correct number of transaction cards', () => {
+    component.transactions = signal(transactions);
+    fixture.detectChanges();
     console.log(transactions);
     const transactionCards =
       fixture.debugElement.nativeElement.querySelectorAll(
         'app-transaction-card'
       );
-    expect(transactionCards.length).toBe(2);
+    expect(transactionCards.length).toBe(9);
   });
 
-  xit('should not show cards when there are no transactions', () => {
+  it('should not show cards when there are no transactions', () => {
     component.transactions = signal(undefined);
-
+    fixture.detectChanges();
     const noTransactions = fixture.debugElement.query(
       By.css('#no-transactions')
     );
