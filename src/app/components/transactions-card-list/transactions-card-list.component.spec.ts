@@ -172,7 +172,6 @@ describe('TransactionsCardListComponent', () => {
   it('should display the correct number of transaction cards', () => {
     component.transactions = signal(transactions);
     fixture.detectChanges();
-    console.log(transactions);
     const transactionCards =
       fixture.debugElement.nativeElement.querySelectorAll(
         'app-transaction-card'
