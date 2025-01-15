@@ -1,6 +1,6 @@
 @if (transactions()) {
 <ul>
-  @for (day of transactions()?.days; track $index) {
+  @for (day of computedDays(); track $index) {
   <li>
     <h3>Date: {{ day.id }}</h3>
     @for (transaction of day.transactions; track $index) {
