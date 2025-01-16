@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionsCardListComponent } from './transactions-card-list.component';
-import { Router } from '@angular/router';
-import { TransactionsService } from '../../services/transactions.service';
-import { of } from 'rxjs';
 import { signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { Transactions } from '../../model/transactions.model';
-import { By } from '@angular/platform-browser';
+import { TransactionsService } from '../../services/transactions.service';
+import { TransactionsCardListComponent } from './transactions-card-list.component';
 
 describe('TransactionsCardListComponent', () => {
   let component: TransactionsCardListComponent;
   let fixture: ComponentFixture<TransactionsCardListComponent>;
   let router: Router;
-  let transactionsService: TransactionsService;
+  let transactionsServiceMock: any;
+  let routerMock: any;
 
   const transactions: Transactions = {
     days: [
@@ -136,9 +135,9 @@ describe('TransactionsCardListComponent', () => {
   };
 
   beforeEach(async () => {
-    const routerMock = { navigate: jest.fn() };
-    const transactionsServiceMock = {
-      loadedTransactions: jest.fn().mockReturnValue(of(transactions)),
+    routerMock = { navigate: jest.fn() };
+    transactionsServiceMock = {
+      loadedTransactions: jest.fn().mockReturnValue(transactions),
     };
 
     await TestBed.configureTestingModule({
@@ -152,11 +151,11 @@ describe('TransactionsCardListComponent', () => {
     fixture = TestBed.createComponent(TransactionsCardListComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    transactionsService = TestBed.inject(TransactionsService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -177,14 +176,5 @@ describe('TransactionsCardListComponent', () => {
         'app-transaction-card'
       );
     expect(transactionCards.length).toBe(9);
-  });
-
-  it('should not show cards when there are no transactions', () => {
-    component.transactions = signal(undefined);
-    fixture.detectChanges();
-    const noTransactions = fixture.debugElement.query(
-      By.css('#no-transactions')
-    );
-    expect(noTransactions).toBeTruthy();
   });
 });

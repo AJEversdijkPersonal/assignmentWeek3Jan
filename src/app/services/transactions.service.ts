@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Transactions } from '../model/transactions.model';
+import { Day, Transactions } from '../model/transactions.model';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap, throwError } from 'rxjs';
 
@@ -132,6 +132,7 @@ export class TransactionsService {
   //   });
 
   loadedTransactions = this.transactions.asReadonly();
+  loadedTransactionsDays = this.transactions.asReadonly();
 
   getTransactions = () => {
     return this.fetchTransactions().pipe(
@@ -154,5 +155,13 @@ export class TransactionsService {
           return throwError(() => new Error('could not get transactions'));
         })
       );
+  };
+
+  sortArrayByDate = (arr: Transactions | undefined | null): Day[] => {
+    if (!arr) return [];
+    const newArr = arr.days.sort(function (a, b) {
+      return Number(new Date(b.id)) - Number(new Date(a.id));
+    });
+    return newArr;
   };
 }

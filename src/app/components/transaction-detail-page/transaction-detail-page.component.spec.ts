@@ -73,8 +73,6 @@ describe('TransactionDetailPageComponent', () => {
   //  so doing something super ugly to fix this and still get the test coverage.
   xit('should compute the correct amount without currencyRate', () => {
     activatedRouteMock.queryParams = of({ dayId: '1', transactionId: '2' });
-    // component.transactionId = '2';
-    // console.log(component);
     fixture.detectChanges();
     const amount = component.amount();
     expect(amount).toBe(200);
