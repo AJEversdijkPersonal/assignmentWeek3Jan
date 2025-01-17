@@ -22,7 +22,7 @@ Made this application as a technical assesment for rabobank. The technical requi
 
 ### Prerequisites
 
-- Node.js (v16 or higher, preferrably 20 which is the current supported LTS version.)
+- Node.js (v18 or higher)
 - Angular CLI
 
 ### Backend Setup
