@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionsCardListComponent } from './transactions-card-list.component';
-import { Router } from '@angular/router';
-import { TransactionsService } from '../../services/transactions.service';
-import { of } from 'rxjs';
 import { signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { Transactions } from '../../model/transactions.model';
-import { By } from '@angular/platform-browser';
+import { TransactionsService } from '../../services/transactions.service';
+import { TransactionsCardListComponent } from './transactions-card-list.component';
 
 describe('TransactionsCardListComponent', () => {
   let component: TransactionsCardListComponent;
   let fixture: ComponentFixture<TransactionsCardListComponent>;
   let router: Router;
-  let transactionsService: TransactionsService;
+  let transactionsServiceMock: any;
+  let routerMock: any;
 
   const transactions: Transactions = {
     days: [
@@ -136,11 +135,9 @@ describe('TransactionsCardListComponent', () => {
   };
 
   beforeEach(async () => {
-    const routerMock = { navigate: jest.fn() };
-    // const transactionsServiceMock = { loadedTransactions: signal([]) };
-
-    const transactionsServiceMock = {
-      loadedTransactions: jest.fn().mockReturnValue(of(transactions)),
+    routerMock = { navigate: jest.fn() };
+    transactionsServiceMock = {
+      loadedTransactions: jest.fn().mockReturnValue(transactions),
     };
 
     await TestBed.configureTestingModule({
@@ -148,19 +145,17 @@ describe('TransactionsCardListComponent', () => {
       providers: [
         { provide: Router, useValue: routerMock },
         { provide: TransactionsService, useValue: transactionsServiceMock },
-        // TransactionsService,
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TransactionsCardListComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    transactionsService = TestBed.inject(TransactionsService);
-    // transactionsService.loadedTransactions = transactionsServiceMock;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -173,23 +168,13 @@ describe('TransactionsCardListComponent', () => {
     });
   });
 
-  // TODO will need to figure out how to test with the signal from the store here, I have never done that before.
-
-  xit('should display the correct number of transaction cards', () => {
-    console.log(transactions);
+  it('should display the correct number of transaction cards', () => {
+    component.transactions = signal(transactions);
+    fixture.detectChanges();
     const transactionCards =
       fixture.debugElement.nativeElement.querySelectorAll(
         'app-transaction-card'
       );
-    expect(transactionCards.length).toBe(2);
-  });
-
-  xit('should not show cards when there are no transactions', () => {
-    component.transactions = signal(undefined);
-
-    const noTransactions = fixture.debugElement.query(
-      By.css('#no-transactions')
-    );
-    expect(noTransactions).toBeTruthy();
+    expect(transactionCards.length).toBe(9);
   });
 });

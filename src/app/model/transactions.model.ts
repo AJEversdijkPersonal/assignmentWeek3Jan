@@ -1,6 +1,6 @@
 export interface OtherParty {
   name: string;
-  iban: string; // TODO if I have time I can make a proper check for the validity of the IBAN.
+  iban: string;
 }
 
 export interface Transaction {

@@ -1,8 +1,9 @@
-import { Component, inject, NgZone, Signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
 import { Router } from '@angular/router';
 import { TransactionsService } from '../../services/transactions.service';
+import { TransactionCardComponent } from '../transaction-card/transaction-card.component';
+import { sortArrayByDate } from './sort-array-by-date';
 9;
 @Component({
   selector: 'app-transactions-card-list',
@@ -14,6 +15,8 @@ import { TransactionsService } from '../../services/transactions.service';
 export class TransactionsCardListComponent {
   private transactionsService = inject(TransactionsService);
   transactions = this.transactionsService.loadedTransactions;
+  isFetching = signal(false);
+  sortArrayByDateLocal = sortArrayByDate;
   constructor(private router: Router) {}
 
   onCardClick = (dayId: string, transactionId: number) => {
