@@ -22,7 +22,7 @@ Made this application as a technical assesment for rabobank. The technical requi
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v16 or higher, preferrably 20 which is the current supported LTS version.)
 - Angular CLI
 
 ### Backend Setup
@@ -55,14 +55,20 @@ Made this application as a technical assesment for rabobank. The technical requi
 
 Open your browser and navigate to `http://localhost:4200` to view the application.
 
+## Usage
+
+The application consists of a welcome page with some news or information on it. And a transaction overview. where you can see your tansactions sorted by newest first. Clicking on a transaction will take you to the detailed information for the transaction.
+
 ## Troubleshooting
 
 - Ensure that both backend and frontend services are running.
 - Check the console for any errors and follow the suggested solutions.
 
+## Deployment
+
+- deploy to application using the output from `npm run build`, this will create a package ready for deployment in the project `dist` directory.
+
 ## Additional Notes
 
 - Make sure to update the currency conversion rates regularly.
 - Follow best practices for Angular and Node.js development.
-- Ensure proper error handling and validation in the application.
-- Test the application thoroughly before deployment.
