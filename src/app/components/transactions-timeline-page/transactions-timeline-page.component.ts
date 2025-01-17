@@ -16,7 +16,6 @@ export class TransactionsTimelinePageComponent implements OnInit {
   transactions = signal<Transactions | undefined | null>(undefined);
 
   ngOnInit(): void {
-    console.log('TransactionsTimelinePageComponent');
     const subscription = this.transactionsService.getTransactions().subscribe();
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
