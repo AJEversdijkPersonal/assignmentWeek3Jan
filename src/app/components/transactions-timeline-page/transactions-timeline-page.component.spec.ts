@@ -5,7 +5,6 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { throwError } from 'rxjs';
 import { TransactionsService } from '../../services/transactions.service';
 import { TransactionsTimelinePageComponent } from './transactions-timeline-page.component';
 
